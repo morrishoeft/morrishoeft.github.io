@@ -2589,6 +2589,19 @@ input, select, textarea {
 				}
 
 
+#banner .content {
+  text-align: center; /* Center content horizontally */
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.logo-container img {
+  max-width: 100%;
+  height: auto;
+}
 
 
 
@@ -3031,10 +3044,13 @@ input, select, textarea {
 		}
 
 /* Goto Next */
+body {
+  overflow: scroll; /* Change to 'auto' if you want the scrollbar to appear only when needed */
+}
 
 	.goto-next {
 		border: 0;
-		bottom: 0;
+		bottom: 10%;
 		display: block;
 		height: 5em;
 		left: 50%;
