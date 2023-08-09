@@ -3047,7 +3047,7 @@ input, select, textarea {
 
 	.goto-next {
 		border: 0;
-		bottom: 10%;
+		bottom: 0;
 		display: block;
 		height: 5em;
 		left: 50%;
@@ -3075,6 +3075,11 @@ input, select, textarea {
 			width: 2em;
 			z-index: 1;
 		}
+
+.goto-next.custom-position {
+  bottom: 10%; /* Adjust this value for the desired position */
+}
+
 
 /* Spotlight */
 
