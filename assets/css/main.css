@@ -3044,9 +3044,6 @@ input, select, textarea {
 		}
 
 /* Goto Next */
-body {
-  overflow: scroll; /* Change to 'auto' if you want the scrollbar to appear only when needed */
-}
 
 	.goto-next {
 		border: 0;
