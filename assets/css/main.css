@@ -47,6 +47,17 @@ blockquote, q {
 	}
 
 
+select {
+    background-color: transparent; /* Match this to your page's background */
+    border: 1px solid #ccc; /* Optional border styling */
+    color: inherit; /* Ensure text color matches surrounding text */
+    font-size: inherit; /* Ensure font size matches surrounding text */
+}
+
+/* Add this to ensure the default selected option appears centered */
+.styled-dropdown:focus {
+    outline: none; /* Remove outline on focus */
+}
 
 
 table {
@@ -93,6 +104,10 @@ input, select, textarea {
   max-width: 75px;
   margin-right: 10px;
 }
+.centered {
+        text-align: center; /* Center the text */
+    }
+
 .image-list li .text-container {
   flex: 1;
   max-width: calc(70% - 120px);
