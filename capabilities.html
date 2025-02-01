@@ -40,68 +40,11 @@
 				</header>
 
 			<!-- Main -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-
-<!-- Container to center the canvas and ensure it scales properly on different screen sizes -->
+<!-- Main -->
 <div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 90px; overflow-x: auto;">
-    <canvas id="pdfViewer" style="max-width: 100%; height: auto;"></canvas>
+    <img src="images/capabilities_page_temp_crop.png" alt="Capabilities Image" style="max-width: 100%; height: auto;">
 </div>
 
-<script>
-    var url = 'images/capabilities_page_temp_crop.pdf'; // Path to your PDF file
-
-    // Load the PDF
-    var loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
-        // Fetch the first page
-        pdf.getPage(1).then(function(page) {
-            // Adjust scale based on screen size (smaller scale for mobile)
-            var scale = (window.innerWidth < 768) ? 0.8 : 1.5; // 0.8 for small screens, 1.5 for larger ones
-            var viewport = page.getViewport({ scale: scale });
-
-            var canvas = document.getElementById('pdfViewer');
-            var context = canvas.getContext('2d');
-
-            // Calculate canvas dimensions for the PDF to fit properly
-            canvas.width = viewport.width;
-            canvas.height = viewport.height;
-
-            // Render the page on the canvas
-            var renderContext = {
-                canvasContext: context,
-                viewport: viewport
-            };
-            page.render(renderContext);
-        });
-    });
-
-    // Adjust the canvas size when the window is resized (for responsiveness)
-    window.addEventListener('resize', function() {
-        var canvas = document.getElementById('pdfViewer');
-        var width = window.innerWidth;
-
-        // Adjust scale for mobile and tablet
-        var scale = (width < 768) ? 0.8 : 1.5; // 0.8 for mobile/tablet, 1.5 for desktop
-
-        var loadingTask = pdfjsLib.getDocument('images/capabilities_page_temp_crop.pdf');
-        loadingTask.promise.then(function(pdf) {
-            pdf.getPage(1).then(function(page) {
-                var viewport = page.getViewport({ scale: scale });
-
-                // Resize the canvas to fit the new scale
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-
-                var context = canvas.getContext('2d');
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext);
-            });
-        });
-    });
-</script>
 
 <br>
 
