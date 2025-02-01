@@ -42,9 +42,9 @@
 			<!-- Main -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
-<!-- Container to center the canvas, with reduced padding-top to move it up -->
-<div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px;">
-    <canvas id="pdfViewer"></canvas>
+<!-- Container to center the canvas -->
+<div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 90px; width: 100%;">
+    <canvas id="pdfViewer" style="max-width: 100%; height: auto;"></canvas>
 </div>
 
 <script>
@@ -62,8 +62,11 @@
             var context = canvas.getContext('2d');
 
             // Set canvas dimensions to match PDF page size
-            canvas.height = viewport.height;
-            canvas.width = viewport.width;
+            var width = window.innerWidth * 0.9; // Set width to 90% of the screen
+            var height = (width * viewport.height) / viewport.width; // Adjust height based on aspect ratio
+
+            canvas.width = width;
+            canvas.height = height;
 
             var renderContext = {
                 canvasContext: context,
@@ -74,7 +77,32 @@
             page.render(renderContext);
         });
     });
+
+    // Adjust the canvas when the window is resized (for responsiveness)
+    window.addEventListener('resize', function() {
+        var canvas = document.getElementById('pdfViewer');
+        var width = window.innerWidth * 0.9; // 90% of screen width
+        var height = (width * canvas.height) / canvas.width; // Maintain aspect ratio
+
+        canvas.width = width;
+        canvas.height = height;
+
+        // Re-render the page with the new dimensions
+        var loadingTask = pdfjsLib.getDocument('images/capabilities_page_temp_crop.pdf');
+        loadingTask.promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                var viewport = page.getViewport({ scale: 1.5 });
+                var context = canvas.getContext('2d');
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
+        });
+    });
 </script>
+
 <br>
 
 									<div class="button-container">
