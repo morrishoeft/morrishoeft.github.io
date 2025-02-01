@@ -1,4 +1,4 @@
-!DOCTYPE HTML>
+<!DOCTYPE HTML>
 <!--
 	Landed by Pixelarity
 	pixelarity.com | hello@pixelarity.com
@@ -40,39 +40,47 @@
 				</header>
 
 			<!-- Main -->
-				<div id="main" class="wrapper style1">
-					<div class="container">
-						<header class="major">
-							<h2 style="font-size: 48px">Imagine multiplying your brand's influence seven times over, in seven different ways.</h2>
-							<p> That's the kind of exponential, measurable growth we help you achieve. By unifying teams, channels, and tactics, we align everyone towards a common goal, amplifying your brand's reach and impact.</p>
-							<div class="image">
-								<img src="images/capabilities_graphic_resize.png">
-							</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
 
-						</header>
+<!-- Container to center the canvas, with reduced padding-top to move it up -->
+<div style="display: flex; justify-content: center; align-items: flex-start; padding-top: 20px;">
+    <canvas id="pdfViewer"></canvas>
+</div>
 
-						<!-- Content -->
-						<header class="major">
-							<section id="content">
-								<h3 style="font-size: 48px">We take our work seriously. </h3>
-								<div class="image">
-									<img src="images/proven_process.png">
-								</div>
-							</section>
-						</header>
-						<header class="major">
+<script>
+    var url = 'images/capabilities_page_temp_crop.pdf'; // Path to your PDF file
 
-								<h3 style="font-size: 48px">Ready to unlock exponential growth and amplify your brand's impact? </h3>
-								<p> Contact Morris Hoeft Group today and let's embark on a purpose-driven journey together. </p>
+    // Load the PDF
+    var loadingTask = pdfjsLib.getDocument(url);
+    loadingTask.promise.then(function(pdf) {
+        // Fetch the first page
+        pdf.getPage(1).then(function(page) {
+            var scale = 1.5; // Adjust the scale for better quality
+            var viewport = page.getViewport({ scale: scale });
+
+            var canvas = document.getElementById('pdfViewer');
+            var context = canvas.getContext('2d');
+
+            // Set canvas dimensions to match PDF page size
+            canvas.height = viewport.height;
+            canvas.width = viewport.width;
+
+            var renderContext = {
+                canvasContext: context,
+                viewport: viewport
+            };
+
+            // Render the page on the canvas
+            page.render(renderContext);
+        });
+    });
+</script>
+<br>
+
 									<div class="button-container">
-									<li class="button-list-item"><a href="elements.html" class="button">Contact Us</a></li>
+									<li class="button-list-item"><a href="elements.html" class="button">Let's get started</a></li>
 									</div>
-						</header>
-
-							</section>
-
-					</div>
-				</div>
+							<br>
 
 			<!-- Footer -->
 				<footer id="footer">
