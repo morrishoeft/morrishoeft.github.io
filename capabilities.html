@@ -41,9 +41,28 @@
 
 			<!-- Main -->
 <!-- Main -->
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 90px; overflow-x: auto;">
-    <img src="images/capabilities_page_temp_crop.png" alt="Capabilities Image" style="max-width: 100%; height: auto;">
+<!-- Main -->
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; padding-top: 90px; overflow-x: hidden;">
+    <img id="pdfImage" src="images/capabilities_page_temp_crop.png" alt="PDF Image" style="max-width: 100%; height: auto; object-fit: contain;">
 </div>
+
+<script>
+    // Make sure the image adjusts dynamically with the screen size
+    window.addEventListener('resize', function() {
+        var image = document.getElementById('pdfImage');
+        var width = window.innerWidth;
+
+        // Adjusting image scale based on screen size
+        if (width < 768) {
+            // Smaller screens, reduce image scale or make it fit
+            image.style.maxWidth = '90%';  // Optional: You can set a max-width for mobile
+        } else {
+            // Larger screens, use full width
+            image.style.maxWidth = '100%';
+        }
+    });
+</script>
+
 
 
 <br>
